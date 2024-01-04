@@ -1,0 +1,85 @@
+nav {
+  padding: 21px 35px !important;
+  background-color: $white;
+  .navbar-brand {
+    margin-right: 80px;
+    svg {
+      height: 30px;
+      width: auto;
+    }
+  }
+  ul li {
+    a {
+      @include body-text(14px, 400, rgba(255, 255, 255, 0.5));
+      text-decoration: none;
+      margin-right: 40px;
+      padding: 0 !important;
+      &.active {
+        font-weight: 700 !important;
+        color: $white;
+      }
+    }
+    ul {
+      border: 1px solid rgb(241, 243, 249) !important;
+      border-radius: 0 !important;
+      background-color: $white;
+      padding: 0 !important;
+      top: 80% !important;
+      min-width: 170px !important;
+      li {
+        padding: 8px 16px;
+        &:hover {
+          background-color: rgba(255, 249, 230, 1);
+          a {
+            color: $black !important;
+          }
+        }
+        a {
+          padding: 0 !important;
+          background-color: transparent !important;
+          color: $black !important;
+          margin-right: 0 !important;
+        }
+      }
+    }
+  }
+  .avatar {
+    @include round-image(40px);
+    // margin-left: 30px;
+  }
+}
+
+.dropdown-menu {
+  &.right {
+    left: unset !important;
+    right: 0 !important;
+    width: auto !important;
+    li {
+      padding: 8px 16px;
+      &:hover {
+        background-color: rgba(255, 249, 230, 1);
+        a {
+          color: $black !important;
+        }
+      }
+      a,
+      p {
+        padding: 0 !important;
+        background-color: transparent !important;
+        color: $black !important;
+        margin-right: 0 !important;
+      }
+      p {
+        margin-bottom: 0;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.nav-link {
+  p {
+    @include body-text(16px, 400, rgba(0, 0, 0, 0.55));
+    margin-bottom: 0 !important;
+  }
+}
