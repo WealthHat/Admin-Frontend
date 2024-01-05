@@ -26,29 +26,31 @@ export default function Home() {
         <form className="d-flex mt-5 justify-content-center">
           <div className="content">
             <Logo2 />
-            <h1>Login to your account</h1>
-            <label htmlFor="email">Email address</label>
-            <input
-              type="text"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <label htmlFor="Password">Password</label>
-            <div className="input d-flex justify-content-between align-items-center">
+
+            <div className="content-body">
+              <h1>Login to your account</h1>
+              <label htmlFor="email">Email address</label>
               <input
-                type={showPassword ? "text" : "password"}
-                id="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                type="text"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
-              {/* <FontAwesomeIcon
+              <label htmlFor="Password">Password</label>
+              <div className="input d-flex justify-content-between align-items-center">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                {/* <FontAwesomeIcon
                 icon={faEye}
                 size="lg"
                 onClick={() => setShowPassword(!showPassword)}
               /> */}
-            </div>
-            <label htmlFor="2fa">
+              </div>
+              {/* <label htmlFor="2fa">
               Two factor token (Google Authentication)
             </label>
             <input
@@ -56,10 +58,11 @@ export default function Home() {
               id="2fa"
               value={otp}
               onChange={(e) => setOtp(e.target.value)}
-            />
-            <button disabled={loading}>
-              {loading ? "Loading..." : "Login"}
-            </button>
+            /> */}
+              <button disabled={loading}>
+                {loading ? "Loading..." : "Login"}
+              </button>
+            </div>
           </div>
         </form>
       </div>
