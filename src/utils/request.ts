@@ -19,11 +19,8 @@ export const PostRequest = async (url: string, data?: any, token?: string) => {
 
     return res;
   } catch (error) {
-    if (error?.code === "ERR_NETWORK") {
-      cogoToast.error("Something went wrong", { hideAfter: 5 });
-    } else {
-      cogoToast.error(error?.response?.data?.message);
-    }
+    cogoToast.error(error?.response?.data?.msg);
+    // console.log(error.response.response?.data?.msg);
 
     return error;
   }

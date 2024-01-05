@@ -6,7 +6,7 @@ const Logo2 = (props: Props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="244"
+      width="170"
       height="35"
       viewBox="0 0 244 35"
       fill="none"

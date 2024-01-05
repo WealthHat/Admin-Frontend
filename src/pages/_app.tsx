@@ -1,6 +1,8 @@
 import type { AppProps } from "next/app";
 import Script from "next/script";
 import "../styles/styles.scss";
+import { Provider } from "react-redux";
+import store from "../store";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -23,7 +25,10 @@ export default function App({ Component, pageProps }: AppProps) {
         integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
         crossOrigin="anonymous"
       ></Script>
-      <Component {...pageProps} />
+
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
     </>
   );
 }

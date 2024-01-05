@@ -54,82 +54,14 @@
             font-size: 16px;
             font-weight: 700;
             margin: 10px 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
             svg {
               display: unset;
               margin: 0 !important;
             }
-          }
-          .tip {
-            border-radius: 4px;
-            padding: 16px;
-            background-color: #f1f3f9;
-            svg {
-              margin: unset;
-            }
-            h4 {
-              @include heading(14px, 700);
-              margin-bottom: 5px;
-            }
-            p {
-              @include body-text(14px, 400, rgba(51, 51, 51, 1));
-              a {
-                color: rgba(222, 133, 0, 1);
-              }
-            }
-          }
-        }
-      }
-      .fa {
-        margin-top: 100px;
-        font-family: "Lora", serif;
-        width: 676px;
-        background-color: $white;
-        .top {
-          border-bottom: solid 1px rgba(234, 234, 234, 1);
-          padding: 31px 0 17px;
-          h2 {
-            @include heading(28px, 700);
-            text-align: center;
-          }
-        }
-        .body {
-          padding: 24px 20px;
-          h3 {
-            @include heading(20px, 700);
-            margin-bottom: 17px;
-          }
-          p {
-            @include body-text(14px, 400, rgba(51, 51, 51, 1));
-            margin-bottom: 24px;
-          }
-          .divider {
-            width: 100%;
-            border: solid 0.5px rgba(234, 234, 234, 1);
-            margin: 24px 0;
-          }
-          h4 {
-            @include heading(14px, 500);
-            margin-bottom: 24px;
-          }
-          .styles_react-code-input-container__tpiKG {
-            width: 450px !important;
-            margin-bottom: 36px;
-            .styles_react-code-input__CRulA {
-              display: flex;
-              justify-content: space-between;
-              input {
-                @include body-text(28px, 700, $black);
-                border: solid 2px #e1e6ef;
-                border-radius: 4px;
-              }
-            }
-          }
-          button {
-            @include body-text(16px, 700, $white);
-            padding: 13px 0;
-            width: 418px;
-            background-color: $black;
-            border-radius: 4px;
           }
         }
       }

@@ -6,14 +6,13 @@ import Logo from "@/svg/Logo";
 import Logo2 from "@/svg/Logo2";
 import { useSelector } from "react-redux";
 import { PostRequest } from "@/utils/request";
-import Loading from "@/common/loading";
 
 interface Payload {
   email: string;
   password: string;
 }
 
-export default function Home() {
+export default function Authenticate() {
   // router
   const router = useRouter();
 
@@ -22,6 +21,7 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
   // const { user, token } = useSelector((state: any) => state.auth);
 
@@ -34,23 +34,15 @@ export default function Home() {
       return cogoToast.error("Input cannot be empty");
     }
 
-    setLoading(true);
-
-    // payload
     const payload: Payload = {
       email,
       password,
     };
 
-    // requests
     const res = await PostRequest("/admin/signin", payload);
     if (res.status === 200 || res.status === 201) {
       localStorage.setItem("activation_token", res.data.activation_token);
       cogoToast.success(res.data.msg);
-      router.push("/authenticate");
-    }
-    else{
-      setLoading(false)
     }
   };
 
@@ -67,34 +59,17 @@ export default function Home() {
             <Logo2 />
 
             <div className="content-body">
-              <h1>Login to your account</h1>
-              <label htmlFor="email">Email address</label>
+              <h1>Provide OTP to continue</h1>
+              <label htmlFor="email">OTP Code</label>
               <input
                 type="text"
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <label htmlFor="Password">Password</label>
-              <div className="input d-flex justify-content-between align-items-center">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  id="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
+
               <button disabled={loading}>
-                {loading ? (
-                  <Loading
-                    height="25px"
-                    width="25px"
-                    primaryColor="#fff"
-                    secondaryColor="#fff"
-                  />
-                ) : (
-                  "Continue"
-                )}
+                {loading ? "Loading..." : "Login"}
               </button>
             </div>
           </div>
