@@ -213,7 +213,7 @@ export default function Nav() {
               <ul className="dropdown-menu right">
                 <li
                   onClick={() => {
-                    localStorage.removeItem("kawa-admin-data");
+                    localStorage.clear();
                     router.push("/");
                   }}
                 >

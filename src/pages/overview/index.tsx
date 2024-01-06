@@ -151,7 +151,7 @@ export default function Overview() {
             <div className="col-6 col-left">
               <div className="overview-left">
                 <div className="d-flex justify-content-between align-items-center mb-4">
-                  <h4>Weekly transaction</h4>
+                  <h4>Networths</h4>
                   {/* <div className="date-box">
                     <span>{trackDate(startWeek)}</span>
                     <span> - </span>
@@ -167,7 +167,7 @@ export default function Overview() {
             <div className="col-6 col-right">
               <div className="overview-right">
                 <div className="d-flex justify-content-between align-items-center mb-4">
-                  <h4>Monthly transaction</h4>
+                  <h4>Performance</h4>
 
                   {/* <div className="date-box">
                     <span>{trackDate(startYear)}</span>
@@ -185,7 +185,7 @@ export default function Overview() {
           <div className="row mt-4 graph-overview">
             <div className="col-5">
               <div className="fleet">
-                <h3>All Performance</h3>
+                <h3>Budgets</h3>
 
                 <hr className="rule" />
 

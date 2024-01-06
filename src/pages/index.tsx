@@ -45,9 +45,10 @@ export default function Home() {
     // requests
     const res = await PostRequest("/admin/signin", payload);
     if (res.status === 200 || res.status === 201) {
-      localStorage.setItem("activation_token", res.data.activation_token);
+      localStorage.setItem("user", res.data);
+      // localStorage.setItem("activation_token", res.data.activation_token);
       cogoToast.success(res.data.msg);
-      router.push("/authenticate");
+      router.push("/overview");
     } else {
       setLoading(false);
     }
