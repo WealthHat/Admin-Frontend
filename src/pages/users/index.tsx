@@ -1,9 +1,15 @@
+import Nav from "@/components/nav";
 import React from "react";
 
 interface Props {}
 
-const Budgets = (props: Props) => {
-  return <div>Budgets</div>;
+const Users = (props: Props) => {
+  return (
+    <>
+      <Nav />
+      <div>Users</div>
+    </>
+  );
 };
 
-export default Budgets;
+export default Users;

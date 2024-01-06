@@ -3,13 +3,15 @@ import React from "react";
 
 interface Props {}
 
-const Agents = (props: Props) => {
+const Changepassword = (props: Props) => {
   return (
     <>
       <Nav />
-      <div>Agents</div>
+      <div>
+        <h2>Change Passwsord</h2>
+      </div>
     </>
   );
 };
 
-export default Agents;
+export default Changepassword;

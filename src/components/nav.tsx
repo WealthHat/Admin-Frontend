@@ -137,7 +137,7 @@ export default function Nav() {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link href="/blogs/create-blog">Create Blog</Link>
+                  <Link href="/blogs/create-blogs">Create Blog</Link>
                 </li>
                 <li>
                   <Link href="/blogs/all-blogs">All Blogs</Link>
@@ -148,7 +148,7 @@ export default function Nav() {
             <li className="nav-item">
               <Link
                 className={`nav-link ${
-                  router.asPath.indexOf("/orders") === 0 ? "active" : ""
+                  router.asPath.indexOf("/users") === 0 ? "active" : ""
                 }`}
                 href="/users"
               >
@@ -159,7 +159,7 @@ export default function Nav() {
             <li className="nav-item">
               <Link
                 className={`nav-link ${
-                  router.asPath.indexOf("/orders") === 0 ? "active" : ""
+                  router.asPath.indexOf("/agents") === 0 ? "active" : ""
                 }`}
                 href="/agents"
               >
@@ -184,12 +184,15 @@ export default function Nav() {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" href="/">
+                  <Link className="dropdown-item" href="#">
                     General Settings
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" href="/">
+                  <Link
+                    className="dropdown-item"
+                    href="/settings/changepassword"
+                  >
                     Change Password
                   </Link>
                 </li>

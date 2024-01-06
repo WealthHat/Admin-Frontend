@@ -8,21 +8,21 @@ nav {
   .navbar-brand {
     margin-right: 80px;
     svg {
-      height: 30px;
+      height: 20px;
       width: auto;
     }
   }
 
   ul li {
     a {
-      @include body-text(14px, 400, rgba(255, 255, 255, 0.5));
+      @include body-text(14px, 400, $black);
       text-decoration: none;
       margin-right: 40px;
       padding: 0 !important;
 
       &.active {
-        font-weight: 600 !important;
-        color: $black;
+        color: $orange-color !important;
+        font-weight: 600;
       }
     }
 
