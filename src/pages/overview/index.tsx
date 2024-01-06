@@ -15,7 +15,7 @@ import BarCharts from "@/common/charts/barcharts";
 import { DataContext } from "@/store/GlobalState";
 import { GetRequest } from "@/utils/request";
 import Skeleton from "react-loading-skeleton";
-
+import DashboardVehicleSkeletonLoader from "@/common/skeleton/dashboard-vehicle-skeleton";
 
 interface Payload {
   email: string;
@@ -35,6 +35,7 @@ export default function Overview() {
   const [fleetCount, setFleetCount] = useState(null);
   const [orderCount, setOrderCount] = useState(null);
   const [count, setCount] = useState(null);
+  const [users, setUsers] = useState(null);
 
   // get dashboard count
   useEffect(() => {
@@ -42,8 +43,9 @@ export default function Overview() {
       const getCount = async () => {
         const res = await GetRequest("/admin/dashboard-count", state.token);
 
-        if (res.status === 200 || res.status === 201) {
+        if (res?.status === 200 || res?.status === 201) {
           setCount(res.data.count);
+          setUsers(res.data.users);
           setLoading(false);
         } else {
           setLoading(false);
@@ -116,16 +118,16 @@ export default function Overview() {
                   <div className="cards">
                     <p className="">All Users</p>
                     <div className="d-flex align-items-end justify-content-between">
-                    {loading ? (
-                      <Loading
-                    height="25px"
-                    width="25px"
-                    primaryColor="#000"
-                    secondaryColor="#000"
-                  />
-                    ) : (
-                      <h4 className="mb-0 ">{count?.users}</h4>
-                    )}
+                      {loading ? (
+                        <Loading
+                          height="25px"
+                          width="25px"
+                          primaryColor="#000"
+                          secondaryColor="#000"
+                        />
+                      ) : (
+                        <h4 className="mb-0 ">{count?.users}</h4>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -135,12 +137,12 @@ export default function Overview() {
                     <p>All Agents</p>
                     <div className="d-flex align-items-end justify-content-between">
                       {loading ? (
-                         <Loading
-                    height="25px"
-                    width="25px"
-                    primaryColor="#000"
-                    secondaryColor="#000"
-                  />
+                        <Loading
+                          height="25px"
+                          width="25px"
+                          primaryColor="#000"
+                          secondaryColor="#000"
+                        />
                       ) : (
                         <h4 className="mb-0 ">{count?.agents}</h4>
                       )}
@@ -152,13 +154,13 @@ export default function Overview() {
                   <div className="cards">
                     <p>Budgets</p>
                     <div className="d-flex align-items-end justify-content-between">
-                        {loading ? (
-                         <Loading
-                    height="25px"
-                    width="25px"
-                    primaryColor="#000"
-                    secondaryColor="#000"
-                  />
+                      {loading ? (
+                        <Loading
+                          height="25px"
+                          width="25px"
+                          primaryColor="#000"
+                          secondaryColor="#000"
+                        />
                       ) : (
                         <h4 className="mb-0 ">{count?.budget}</h4>
                       )}
@@ -170,13 +172,13 @@ export default function Overview() {
                   <div className="cards">
                     <p>Networths</p>
                     <div className="d-flex align-items-end justify-content-between">
-                       {loading ? (
-                         <Loading
-                    height="25px"
-                    width="25px"
-                    primaryColor="#000"
-                    secondaryColor="#000"
-                  />
+                      {loading ? (
+                        <Loading
+                          height="25px"
+                          width="25px"
+                          primaryColor="#000"
+                          secondaryColor="#000"
+                        />
                       ) : (
                         <h4 className="mb-0 ">{count?.networth}</h4>
                       )}
@@ -188,13 +190,13 @@ export default function Overview() {
                   <div className="cards">
                     <p>Performance</p>
                     <div className="d-flex align-items-end justify-content-between">
-                        {loading ? (
-                         <Loading
-                    height="25px"
-                    width="25px"
-                    primaryColor="#000"
-                    secondaryColor="#000"
-                  />
+                      {loading ? (
+                        <Loading
+                          height="25px"
+                          width="25px"
+                          primaryColor="#000"
+                          secondaryColor="#000"
+                        />
                       ) : (
                         <h4 className="mb-0 ">{count?.performance}</h4>
                       )}
@@ -206,13 +208,13 @@ export default function Overview() {
                   <div className="cards">
                     <p>Blogs</p>
                     <div className="d-flex align-items-end justify-content-between">
-                        {loading ? (
-                         <Loading
-                    height="25px"
-                    width="25px"
-                    primaryColor="#000"
-                    secondaryColor="#000"
-                  />
+                      {loading ? (
+                        <Loading
+                          height="25px"
+                          width="25px"
+                          primaryColor="#000"
+                          secondaryColor="#000"
+                        />
                       ) : (
                         <h4 className="mb-0 ">{count?.blogs}</h4>
                       )}
@@ -281,38 +283,48 @@ export default function Overview() {
                   <Link href="/riders-management">See all</Link>
                 </div>
 
-                <table className="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Vehicle</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Action</th>
-                    </tr>
-                  </thead>
+                {loading ? (
+                  <DashboardVehicleSkeletonLoader />
+                ) : (
+                  <table className="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        {/* <th scope="col">Email</th> */}
+                        <th scope="col">Activated</th>
+                        <th scope="col">Onboarded</th>
+                        <th scope="col">Profiled</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
 
-                  <tbody>
-                    <tr className="shaded">
-                      <td scope="row">1</td>
-                      <td scope="row">Ayodeji Oladimeji</td>
-                      <td scope="row" style={{ textTransform: "capitalize" }}>
-                        Van
-                      </td>
-                      <td scope="row">Status</td>
-                      <td scope="row">
-                        <Tooltip
-                          placement="top"
-                          overlay={<span>View User</span>}
-                        >
-                          <small className="order-action">
-                            <ViewIcon />
-                          </small>
-                        </Tooltip>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                    <tbody>
+                      {users?.map((item, index) => (
+                        <tr className="shaded" key={index}>
+                          <td scope="row">{index + 1}</td>
+                          <td scope="row">
+                            {item.firstname} {item.lastname}
+                          </td>
+                          {/* <td scope="row">{item.email}</td> */}
+                          <td scope="row">{item.isActivated ? "Yes" : "No"}</td>
+                          <td scope="row">{item.isOnboarded ? "Yes" : "No"}</td>
+                          <td scope="row">{item.isProfiled ? "Yes" : "No"}</td>
+                          <td scope="row">
+                            <Tooltip
+                              placement="top"
+                              overlay={<span>View User</span>}
+                            >
+                              <small className="order-action">
+                                <ViewIcon />
+                              </small>
+                            </Tooltip>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
               </div>
             </div>
           </div>
