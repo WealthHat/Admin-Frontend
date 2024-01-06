@@ -14,11 +14,14 @@ nav {
       text-decoration: none;
       margin-right: 40px;
       padding: 0 !important;
+
       &.active {
-        font-weight: 700 !important;
-        color: $white;
+        font-weight: 600 !important;
+        color: $black;
       }
     }
+
+    // menu dropdown
     ul {
       border: 1px solid rgb(241, 243, 249) !important;
       border-radius: 0 !important;
@@ -26,6 +29,7 @@ nav {
       padding: 0 !important;
       top: 80% !important;
       min-width: 170px !important;
+
       li {
         padding: 8px 16px;
         &:hover {
@@ -43,6 +47,7 @@ nav {
       }
     }
   }
+
   .avatar {
     @include round-image(40px);
     // margin-left: 30px;

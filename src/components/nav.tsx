@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Logo2 from "@/svg/Logo2";
 
 export default function Nav() {
   const router = useRouter();
@@ -21,8 +22,9 @@ export default function Nav() {
     <nav className="navbar navbar-expand-lg align-items-center">
       <div className="container-fluid">
         <Link className="navbar-brand" href={"/"}>
-          WealthHat
+          <Logo2 />
         </Link>
+
         <button
           className="navbar-toggler"
           type="button"
@@ -42,7 +44,7 @@ export default function Nav() {
             <li className="nav-item">
               <Link
                 className={`nav-link ${
-                  router.asPath.includes("DASHBOARD") ? "active" : ""
+                  router.asPath.includes("overview") ? "active" : ""
                 }`}
                 aria-current="page"
                 href="/overview"
@@ -163,7 +165,7 @@ export default function Nav() {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <p>{user}</p>
+                <p>Ayodeji Oladimeji</p>
               </Link>
               <ul className="dropdown-menu right">
                 <li
