@@ -59,7 +59,7 @@ export const GetRequest = async (url: string, token?: string) => {
       endpoint + url,
       token && {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `${token}`,
           "Content-Type": "application/json",
         },
       }

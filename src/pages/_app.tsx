@@ -1,8 +1,8 @@
 import type { AppProps } from "next/app";
 import Script from "next/script";
 import "../styles/styles.scss";
-import { Provider } from "react-redux";
-import store from "../store";
+import "react-loading-skeleton/dist/skeleton.css";
+import { DataProvider } from "@/store/GlobalState";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -26,9 +26,9 @@ export default function App({ Component, pageProps }: AppProps) {
         crossOrigin="anonymous"
       ></Script>
 
-      <Provider store={store}>
+      <DataProvider>
         <Component {...pageProps} />
-      </Provider>
+      </DataProvider>
     </>
   );
 }

@@ -1,22 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Logo2 from "@/svg/Logo2";
+import { DataContext } from "@/store/GlobalState";
+import { ACTIONS } from "@/store/Actions";
 
 export default function Nav() {
   const router = useRouter();
-
-  const [user, setUser] = useState("");
+  const { state, dispatch } = useContext(DataContext);
 
   useEffect(() => {
-    const userData = JSON.parse(
-      localStorage.getItem("kawa-admin-data") || "{}"
-    ).admin;
-    if (userData) {
-      setUser(`${userData.firstName} ${userData.lastName}`);
+    const userData = JSON.parse(localStorage.getItem("user"));
+
+    if (!userData) {
+      router.push("/");
     }
+
+    dispatch({ type: ACTIONS.TOKEN, payload: userData?.token });
+    dispatch({ type: ACTIONS.USER, payload: userData?.user });
   }, []);
+
+  //
 
   return (
     <nav className="navbar navbar-expand-lg align-items-center">
@@ -208,7 +213,7 @@ export default function Nav() {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <p>Ayodeji Oladimeji</p>
+                <p>{state?.user?.username}</p>
               </Link>
               <ul className="dropdown-menu right">
                 <li

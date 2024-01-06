@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Inter } from "next/font/google";
 import { useRouter } from "next/router";
 import cogoToast from "cogo-toast";
@@ -12,6 +12,10 @@ import ViewIcon from "@/svg/ViewIcon";
 import Donutchart from "@/common/charts/donutchart";
 import BarChart2 from "@/common/charts/barchart2";
 import BarCharts from "@/common/charts/barcharts";
+import { DataContext } from "@/store/GlobalState";
+import { GetRequest } from "@/utils/request";
+import Skeleton from "react-loading-skeleton";
+
 
 interface Payload {
   email: string;
@@ -24,12 +28,30 @@ export default function Overview() {
 
   // PageLoader
   const [pageLoading, setPageLoading] = useState(false);
-  const [loading, setLoading] = useState(false);
-  // const { user, token } = useSelector((state: any) => state.auth);
+  const [loading, setLoading] = useState(true);
+  const { state } = useContext(DataContext);
   const [transactionCount, setTransactionCount] = useState(null);
   const [availableRiders, setAvailableRiders] = useState(null);
   const [fleetCount, setFleetCount] = useState(null);
   const [orderCount, setOrderCount] = useState(null);
+  const [count, setCount] = useState(null);
+
+  // get dashboard count
+  useEffect(() => {
+    if (state?.token) {
+      const getCount = async () => {
+        const res = await GetRequest("/admin/dashboard-count", state.token);
+
+        if (res.status === 200 || res.status === 201) {
+          setCount(res.data.count);
+          setLoading(false);
+        } else {
+          setLoading(false);
+        }
+      };
+      getCount();
+    }
+  }, [state?.token]);
 
   // responsive slider on smaller devices
   let settings = {
@@ -91,54 +113,109 @@ export default function Overview() {
             <div className="row p-2">
               <Slider {...settings}>
                 <div className="col columns">
-                  <div className="card">
-                    <p>All Users</p>
+                  <div className="cards">
+                    <p className="">All Users</p>
                     <div className="d-flex align-items-end justify-content-between">
-                      <h4 className="mb-0">0</h4>
+                    {loading ? (
+                      <Loading
+                    height="25px"
+                    width="25px"
+                    primaryColor="#000"
+                    secondaryColor="#000"
+                  />
+                    ) : (
+                      <h4 className="mb-0 ">{count?.users}</h4>
+                    )}
                     </div>
                   </div>
                 </div>
 
                 <div className="col columns">
-                  <div className="card">
+                  <div className="cards">
                     <p>All Agents</p>
                     <div className="d-flex align-items-end justify-content-between">
-                      <h4 className="mb-0">0</h4>
+                      {loading ? (
+                         <Loading
+                    height="25px"
+                    width="25px"
+                    primaryColor="#000"
+                    secondaryColor="#000"
+                  />
+                      ) : (
+                        <h4 className="mb-0 ">{count?.agents}</h4>
+                      )}
                     </div>
                   </div>
                 </div>
 
                 <div className="col columns">
-                  <div className="card">
+                  <div className="cards">
                     <p>Budgets</p>
                     <div className="d-flex align-items-end justify-content-between">
-                      <h4 className="mb-0">0</h4>
+                        {loading ? (
+                         <Loading
+                    height="25px"
+                    width="25px"
+                    primaryColor="#000"
+                    secondaryColor="#000"
+                  />
+                      ) : (
+                        <h4 className="mb-0 ">{count?.budget}</h4>
+                      )}
                     </div>
                   </div>
                 </div>
 
                 <div className="col columns">
-                  <div className="card">
+                  <div className="cards">
                     <p>Networths</p>
                     <div className="d-flex align-items-end justify-content-between">
-                      <h4 className="mb-0">0</h4>
+                       {loading ? (
+                         <Loading
+                    height="25px"
+                    width="25px"
+                    primaryColor="#000"
+                    secondaryColor="#000"
+                  />
+                      ) : (
+                        <h4 className="mb-0 ">{count?.networth}</h4>
+                      )}
                     </div>
                   </div>
                 </div>
 
                 <div className="col columns">
-                  <div className="card">
+                  <div className="cards">
                     <p>Performance</p>
                     <div className="d-flex align-items-end justify-content-between">
-                      <h4 className="mb-0">0</h4>
+                        {loading ? (
+                         <Loading
+                    height="25px"
+                    width="25px"
+                    primaryColor="#000"
+                    secondaryColor="#000"
+                  />
+                      ) : (
+                        <h4 className="mb-0 ">{count?.performance}</h4>
+                      )}
                     </div>
                   </div>
                 </div>
+
                 <div className="col columns">
-                  <div className="card">
+                  <div className="cards">
                     <p>Blogs</p>
                     <div className="d-flex align-items-end justify-content-between">
-                      <h4 className="mb-0">0</h4>
+                        {loading ? (
+                         <Loading
+                    height="25px"
+                    width="25px"
+                    primaryColor="#000"
+                    secondaryColor="#000"
+                  />
+                      ) : (
+                        <h4 className="mb-0 ">{count?.blogs}</h4>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -152,6 +229,7 @@ export default function Overview() {
               <div className="overview-left">
                 <div className="d-flex justify-content-between align-items-center mb-4">
                   <h4>Networths</h4>
+
                   {/* <div className="date-box">
                     <span>{trackDate(startWeek)}</span>
                     <span> - </span>

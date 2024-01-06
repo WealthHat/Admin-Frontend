@@ -77,7 +77,7 @@
         }
       }
 
-      .card {
+      .cards {
         border: 1px solid rgba(241, 243, 249, 1);
         background-color: $white;
         padding: 20px;
@@ -85,6 +85,11 @@
         transition: $transitions;
         cursor: pointer;
         width: 100%;
+
+        .skelet{
+          margin:0!important;
+          border-radius:0;
+        }
 
         &:hover {
           border: 1px solid $primary-color;
