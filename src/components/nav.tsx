@@ -56,10 +56,7 @@ export default function Nav() {
             <li className="nav-item dropdown">
               <Link
                 className={`nav-link dropdown-toggle ${
-                  router.asPath.includes("order-transactions") ||
-                  router.asPath.includes("payout-transactions")
-                    ? "active"
-                    : ""
+                  router.asPath.includes("budgets") ? "active" : ""
                 }`}
                 href="#"
                 role="button"
@@ -70,10 +67,10 @@ export default function Nav() {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link href="/">Order Transactions</Link>
+                  <Link href="/budgets/create-budget">Create Budget</Link>
                 </li>
                 <li>
-                  <Link href="/">Payout Transaction</Link>
+                  <Link href="/budgets/all-budgets">All Budgets</Link>
                 </li>
               </ul>
             </li>
@@ -81,10 +78,7 @@ export default function Nav() {
             <li className="nav-item dropdown">
               <Link
                 className={`nav-link dropdown-toggle ${
-                  router.asPath.includes("order-transactions") ||
-                  router.asPath.includes("payout-transactions")
-                    ? "active"
-                    : ""
+                  router.asPath.includes("networths") ? "active" : ""
                 }`}
                 href="#"
                 role="button"
@@ -95,10 +89,10 @@ export default function Nav() {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link href="/">Order Transactions</Link>
+                  <Link href="/networths/create-networth">Create Networth</Link>
                 </li>
                 <li>
-                  <Link href="/">Payout Transaction</Link>
+                  <Link href="/networths/all-networth">All Networths</Link>
                 </li>
               </ul>
             </li>
@@ -106,10 +100,7 @@ export default function Nav() {
             <li className="nav-item dropdown">
               <Link
                 className={`nav-link dropdown-toggle ${
-                  router.asPath.includes("order-transactions") ||
-                  router.asPath.includes("payout-transactions")
-                    ? "active"
-                    : ""
+                  router.asPath.includes("performance") ? "active" : ""
                 }`}
                 href="#"
                 role="button"
@@ -120,10 +111,14 @@ export default function Nav() {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link href="/">Order Transactions</Link>
+                  <Link href="/performaces/create-performance">
+                    Create Performance
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/">Payout Transaction</Link>
+                  <Link href="/performaces/all-performance">
+                    All Performances
+                  </Link>
                 </li>
               </ul>
             </li>
@@ -131,10 +126,7 @@ export default function Nav() {
             <li className="nav-item dropdown">
               <Link
                 className={`nav-link dropdown-toggle ${
-                  router.asPath.includes("order-transactions") ||
-                  router.asPath.includes("payout-transactions")
-                    ? "active"
-                    : ""
+                  router.asPath.includes("blogs") ? "active" : ""
                 }`}
                 href="#"
                 role="button"
@@ -145,10 +137,10 @@ export default function Nav() {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link href="/">Order Transactions</Link>
+                  <Link href="/blogs/create-blog">Create Blog</Link>
                 </li>
                 <li>
-                  <Link href="/">Payout Transaction</Link>
+                  <Link href="/blogs/all-blogs">All Blogs</Link>
                 </li>
               </ul>
             </li>
@@ -158,7 +150,7 @@ export default function Nav() {
                 className={`nav-link ${
                   router.asPath.indexOf("/orders") === 0 ? "active" : ""
                 }`}
-                href="/"
+                href="/users"
               >
                 Users
               </Link>
@@ -169,7 +161,7 @@ export default function Nav() {
                 className={`nav-link ${
                   router.asPath.indexOf("/orders") === 0 ? "active" : ""
                 }`}
-                href="/"
+                href="/agents"
               >
                 Agents
               </Link>
@@ -198,27 +190,7 @@ export default function Nav() {
                 </li>
                 <li>
                   <Link className="dropdown-item" href="/">
-                    Reporting
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" href="/">
-                    Email Template
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" href="/">
-                    Subscriptions
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" href="/">
-                    States & Cities
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" href="/">
-                    Item Category
+                    Change Password
                   </Link>
                 </li>
               </ul>
