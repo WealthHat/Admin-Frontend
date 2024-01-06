@@ -111,13 +111,13 @@ export default function Nav() {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link href="/performaces/create-performance">
+                  <Link href="/performance/create-performance">
                     Create Performance
                   </Link>
                 </li>
                 <li>
-                  <Link href="/performaces/all-performance">
-                    All Performances
+                  <Link href="/performance/all-performance">
+                    All Performance
                   </Link>
                 </li>
               </ul>
