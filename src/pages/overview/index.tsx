@@ -36,8 +36,8 @@ export default function Overview() {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 4,
+    slidesToShow: 6,
+    slidesToScroll: 6,
     initialSlide: 0,
     arrows: false,
     responsive: [
@@ -92,45 +92,53 @@ export default function Overview() {
               <Slider {...settings}>
                 <div className="col columns">
                   <div className="card">
-                    <p>Total Orders</p>
+                    <p>All Users</p>
                     <div className="d-flex align-items-end justify-content-between">
-                      <h4 className="mb-0">107</h4>
+                      <h4 className="mb-0">0</h4>
                     </div>
                   </div>
                 </div>
 
                 <div className="col columns">
                   <div className="card">
-                    <p>Delivered Orders</p>
+                    <p>All Agents</p>
                     <div className="d-flex align-items-end justify-content-between">
-                      <h4 className="mb-0">99</h4>
+                      <h4 className="mb-0">0</h4>
                     </div>
                   </div>
                 </div>
 
                 <div className="col columns">
                   <div className="card">
-                    <p>Ongoing Orders</p>
+                    <p>Budgets</p>
                     <div className="d-flex align-items-end justify-content-between">
-                      <h4 className="mb-0">78</h4>
+                      <h4 className="mb-0">0</h4>
                     </div>
                   </div>
                 </div>
 
                 <div className="col columns">
                   <div className="card">
-                    <p>Processing Orders</p>
+                    <p>Networths</p>
                     <div className="d-flex align-items-end justify-content-between">
-                      <h4 className="mb-0">57</h4>
+                      <h4 className="mb-0">0</h4>
                     </div>
                   </div>
                 </div>
 
                 <div className="col columns">
                   <div className="card">
-                    <p>Scheduled Orders</p>
+                    <p>Performance</p>
                     <div className="d-flex align-items-end justify-content-between">
-                      <h4 className="mb-0">89</h4>
+                      <h4 className="mb-0">0</h4>
+                    </div>
+                  </div>
+                </div>
+                <div className="col columns">
+                  <div className="card">
+                    <p>Blogs</p>
+                    <div className="d-flex align-items-end justify-content-between">
+                      <h4 className="mb-0">0</h4>
                     </div>
                   </div>
                 </div>
@@ -143,7 +151,7 @@ export default function Overview() {
             <div className="col-6 col-left">
               <div className="overview-left">
                 <div className="d-flex justify-content-between align-items-center mb-4">
-                  <h4>Weekly orders</h4>
+                  <h4>Weekly transaction</h4>
                   {/* <div className="date-box">
                     <span>{trackDate(startWeek)}</span>
                     <span> - </span>
@@ -177,7 +185,7 @@ export default function Overview() {
           <div className="row mt-4 graph-overview">
             <div className="col-5">
               <div className="fleet">
-                <h3>All fleets</h3>
+                <h3>All Performance</h3>
 
                 <hr className="rule" />
 
