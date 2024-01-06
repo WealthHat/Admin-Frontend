@@ -66,7 +66,7 @@ export default function Nav() {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Finances
+                Budgets
               </Link>
               <ul className="dropdown-menu">
                 <li>
@@ -77,6 +77,82 @@ export default function Nav() {
                 </li>
               </ul>
             </li>
+
+            <li className="nav-item dropdown">
+              <Link
+                className={`nav-link dropdown-toggle ${
+                  router.asPath.includes("order-transactions") ||
+                  router.asPath.includes("payout-transactions")
+                    ? "active"
+                    : ""
+                }`}
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Networth
+              </Link>
+              <ul className="dropdown-menu">
+                <li>
+                  <Link href="/">Order Transactions</Link>
+                </li>
+                <li>
+                  <Link href="/">Payout Transaction</Link>
+                </li>
+              </ul>
+            </li>
+
+            <li className="nav-item dropdown">
+              <Link
+                className={`nav-link dropdown-toggle ${
+                  router.asPath.includes("order-transactions") ||
+                  router.asPath.includes("payout-transactions")
+                    ? "active"
+                    : ""
+                }`}
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Performance
+              </Link>
+              <ul className="dropdown-menu">
+                <li>
+                  <Link href="/">Order Transactions</Link>
+                </li>
+                <li>
+                  <Link href="/">Payout Transaction</Link>
+                </li>
+              </ul>
+            </li>
+
+            <li className="nav-item dropdown">
+              <Link
+                className={`nav-link dropdown-toggle ${
+                  router.asPath.includes("order-transactions") ||
+                  router.asPath.includes("payout-transactions")
+                    ? "active"
+                    : ""
+                }`}
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Blogs
+              </Link>
+              <ul className="dropdown-menu">
+                <li>
+                  <Link href="/">Order Transactions</Link>
+                </li>
+                <li>
+                  <Link href="/">Payout Transaction</Link>
+                </li>
+              </ul>
+            </li>
+
             <li className="nav-item">
               <Link
                 className={`nav-link ${
@@ -84,29 +160,21 @@ export default function Nav() {
                 }`}
                 href="/"
               >
-                Orders
+                Users
               </Link>
             </li>
+
             <li className="nav-item">
               <Link
                 className={`nav-link ${
-                  router.asPath.includes("/individual") ? "active" : ""
+                  router.asPath.indexOf("/orders") === 0 ? "active" : ""
                 }`}
                 href="/"
               >
-                Individuals
+                Agents
               </Link>
             </li>
-            <li className="nav-item">
-              <Link
-                href="/"
-                className={`nav-link ${
-                  router.asPath.includes("/carriers") ? "active" : ""
-                }`}
-              >
-                Carriers
-              </Link>
-            </li>
+
             <li className="nav-item dropdown">
               <Link
                 className={`nav-link dropdown-toggle ${

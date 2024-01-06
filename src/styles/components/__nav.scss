@@ -1,6 +1,10 @@
 nav {
   padding: 21px 35px !important;
   background-color: $white;
+  width: 100%;
+  position: fixed !important;
+  z-index: 1;
+
   .navbar-brand {
     margin-right: 80px;
     svg {
@@ -8,6 +12,7 @@ nav {
       width: auto;
     }
   }
+
   ul li {
     a {
       @include body-text(14px, 400, rgba(255, 255, 255, 0.5));

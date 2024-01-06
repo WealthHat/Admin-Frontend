@@ -1,7 +1,6 @@
 // dashboard overview items
 .dashboard-content-container {
-  padding: 40px 30px;
-  height: 100vh;
+  padding: 120px 20px 40px 20px;
   background-color: rgba(250, 250, 250, 1);
   overflow-y: auto;
   overflow-x: hidden;
@@ -11,19 +10,19 @@
     padding-top: 120px;
   }
 
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-  /* Track */
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: #e1e6ef;
-    border-radius: 10px;
-    margin-left: 5px;
-  }
+  // &::-webkit-scrollbar {
+  //   width: 8px;
+  // }
+  // /* Track */
+  // &::-webkit-scrollbar-track {
+  //   background: transparent;
+  // }
+  // /* Handle */
+  // &::-webkit-scrollbar-thumb {
+  //   background: #e1e6ef;
+  //   border-radius: 10px;
+  //   margin-left: 5px;
+  // }
 
   h1 {
     @include heading(28px, 700);
