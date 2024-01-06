@@ -6,10 +6,11 @@ import Logo from "@/svg/Logo";
 import Logo2 from "@/svg/Logo2";
 import { useSelector } from "react-redux";
 import { PostRequest } from "@/utils/request";
+import Loading from "@/common/loading";
 
 interface Payload {
-  email: string;
-  password: string;
+  activation_token: string;
+  auth_code: string;
 }
 
 export default function Authenticate() {
@@ -17,32 +18,48 @@ export default function Authenticate() {
   const router = useRouter();
 
   // PageLoader
-  const [pageLoading, setPageLoading] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const [pageLoading, setPageLoading] = useState(true);
   const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
   // const { user, token } = useSelector((state: any) => state.auth);
+
+  // check if activation token is available
+  useEffect(() => {
+    const act_token = localStorage.getItem("activation_token");
+    if (act_token) {
+      setPageLoading(false);
+    } else {
+      router.push("/");
+    }
+  }, []);
 
   // handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // validate inputs
-    if (email === "" || password === "") {
-      return cogoToast.error("Input cannot be empty");
+    if (otp === "") {
+      return cogoToast.error("code cannot be empty");
     }
 
+    setLoading(true);
+
+    // get activation token from local storage
+    const act_token = localStorage.getItem("activation_token");
+
     const payload: Payload = {
-      email,
-      password,
+      activation_token: act_token,
+      auth_code: otp,
     };
 
-    const res = await PostRequest("/admin/signin", payload);
+    const res = await PostRequest("/admin/auth-signin", payload);
     if (res.status === 200 || res.status === 201) {
-      localStorage.setItem("activation_token", res.data.activation_token);
+      // localStorage.setItem("activation_token", res.data.activation_token);
+      console.log(res.data);
       cogoToast.success(res.data.msg);
+    } else {
+      setLoading(false);
+      router.push("/overview");
     }
   };
 
@@ -59,17 +76,33 @@ export default function Authenticate() {
             <Logo2 />
 
             <div className="content-body">
-              <h1>Provide OTP to continue</h1>
-              <label htmlFor="email">OTP Code</label>
+              <div className="d-flex gap-4 align-items-center mb-5 justify-content-center">
+                <i
+                  className="bi bi-arrow-left"
+                  onClick={() => router.back()}
+                ></i>
+                <h1>Provide OTP to continue</h1>
+              </div>
+
+              <label htmlFor="otp">OTP Code</label>
               <input
                 type="text"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                id="otp"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
               />
 
               <button disabled={loading}>
-                {loading ? "Loading..." : "Login"}
+                {loading ? (
+                  <Loading
+                    height="25px"
+                    width="25px"
+                    primaryColor="#fff"
+                    secondaryColor="#fff"
+                  />
+                ) : (
+                  "Login"
+                )}
               </button>
             </div>
           </div>

@@ -48,9 +48,8 @@ export default function Home() {
       localStorage.setItem("activation_token", res.data.activation_token);
       cogoToast.success(res.data.msg);
       router.push("/authenticate");
-    }
-    else{
-      setLoading(false)
+    } else {
+      setLoading(false);
     }
   };
 
@@ -67,7 +66,7 @@ export default function Home() {
             <Logo2 />
 
             <div className="content-body">
-              <h1>Login to your account</h1>
+              <h1 className="mb-5">Login to your account</h1>
               <label htmlFor="email">Email address</label>
               <input
                 type="text"
