@@ -9,6 +9,7 @@ import cogoToast from "cogo-toast";
 import Button from "@/common/button";
 import DashboardVehicleSkeletonLoader from "@/common/skeleton/dashboard-vehicle-skeleton";
 import NetworthTableSkeletonLoader from "@/common/skeleton/networth-table-skeleton";
+import { sortCategory, sortTypes } from "@/utils/filter";
 
 interface Props {}
 
@@ -31,6 +32,8 @@ const CreateNetworth = (props: Props) => {
   const [callback, setCallback] = useState(false);
   const [networthloading, setNetworthloading] = useState(false);
   const [networths, setNetworths] = useState(null);
+  const [categories, setCategories] = useState("");
+  const [types, setTypes] = useState("");
 
   // get all users
   useEffect(() => {
@@ -125,6 +128,10 @@ const CreateNetworth = (props: Props) => {
       }
     }
   };
+
+  // sorted and filtered data
+  const categorySort = sortCategory(networths, categories);
+  const sortedData = sortTypes(categorySort, types);
 
   //
   return (
@@ -238,20 +245,50 @@ const CreateNetworth = (props: Props) => {
                 </form>
               </div>
             </div>
+
             <div className="col-8">
               <div className="networth-right">
-                <h1>{user?.label} Networth</h1>
+                <div className="right-heading">
+                  <h1>{user?.label} Networth</h1>
+
+                  <div className="right-dropdown">
+                    <select
+                      value={categories}
+                      onChange={(e) => setCategories(e.target.value)}
+                      className="form-select"
+                    >
+                      <option defaultValue="">Category</option>
+                      <option value="1">Real Assets</option>
+                      <option value="2">Liquid Assets</option>
+                      <option value="3">Alternative Assets</option>
+                    </select>
+
+                    <select
+                      value={types}
+                      onChange={(e) => setTypes(e.target.value)}
+                      className="form-select"
+                    >
+                      <option defaultValue="">Asset type</option>
+                      <option value="1">Fixed Income</option>
+                      <option value="2">Real Estate</option>
+                      <option value="3">Equities</option>
+                      <option value="4">Cash</option>
+                      <option value="5">Business Interest</option>
+                      <option value="6">Crypto</option>
+                    </select>
+                  </div>
+                </div>
 
                 {networthloading ? (
                   <NetworthTableSkeletonLoader />
                 ) : (
                   <>
-                    {networths?.length === 0 ? (
+                    {sortedData?.length === 0 ? (
                       <div
                         className="d-flex justify-content-center text-secondary"
                         style={{ paddingTop: "100px", paddingBottom: "100px" }}
                       >
-                        No Networths
+                        No Networths found
                       </div>
                     ) : !networths ? (
                       <div
@@ -274,14 +311,18 @@ const CreateNetworth = (props: Props) => {
                         </thead>
 
                         <tbody>
-                          {networths?.map((item, index) => (
+                          {sortedData?.map((item, index) => (
                             <tr className="shaded" key={index}>
                               <td scope="row">{index + 1}</td>
                               <td scope="row">{item.category}</td>
                               <td scope="row">{item.type}</td>
                               <td scope="row">{item.assets}</td>
-                              <td scope="row">{formatMoney(item.current_value_naira)}</td>
-                              <td scope="row">{formatMoney(item.current_value_dollar)}</td>
+                              <td scope="row">
+                                {formatMoney(item.current_value_naira)}
+                              </td>
+                              <td scope="row">
+                                {formatMoney(item.current_value_dollar)}
+                              </td>
                             </tr>
                           ))}
                         </tbody>
