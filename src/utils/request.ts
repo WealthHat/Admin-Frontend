@@ -11,7 +11,7 @@ export const PostRequest = async (url: string, data?: any, token?: string) => {
       data && data,
       token && {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `${token}`,
           "Content-Type": "application/json",
         },
       }

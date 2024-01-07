@@ -1,0 +1,160 @@
+.networth {
+  padding-top: 100px;
+  padding-bottom: 200px;
+  height: 100vh;
+
+  .networth-left {
+    border: 1px solid $border-color;
+    padding: 40px 20px;
+
+    h1 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+
+    .form-box {
+      margin-bottom: 20px;
+
+      label {
+        @include body-text(14px, 400, $text-color);
+        margin-bottom: 10px !important;
+
+        &.disabled {
+          color: $light-color;
+        }
+      }
+
+      input {
+        @include input($border-color);
+        display: block;
+        width: 100%;
+        border-radius: 8px;
+        padding: 13px;
+        font-size: 14px;
+
+        &:disabled {
+          color: $light-color;
+        }
+
+        &.money-input {
+          padding-left: 40px;
+        }
+      }
+
+      .basic-select {
+        font-size: 14px !important;
+        border: 1px solid $border-color;
+        border-radius: 5px;
+
+        &.focus {
+          border: 1px solid $primary-color !important;
+        }
+      }
+
+      select {
+        padding: 13px;
+        border: 1px solid $border-color;
+        font-size: 14px;
+
+        &:disabled {
+          background: $white;
+        }
+      }
+    }
+  }
+
+  .networth-right {
+    padding: 40px 20px;
+    border: 1px solid $border-color;
+
+    h1 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+  }
+
+  table {
+    margin-bottom: 0;
+    width: 100% !important;
+
+    th {
+      @include body-text(14px, 600, $light-color);
+      padding: 21px 0.5rem;
+      width: 10%;
+
+      &:first-child {
+        width: 4%;
+      }
+
+      &:last-child {
+        width: 5%;
+      }
+    }
+    tr {
+      border-bottom: 1px solid $border-color;
+
+      &:hover {
+        background: #fdf6e3;
+      }
+
+      td {
+        @include body-text(14px, 400, $text-primary);
+        padding: 21px 0.5rem;
+
+        .desc {
+          width: 80px !important;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+        .pickup {
+          width: 120px !important;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+
+        .status {
+          @include body-text(12px, 400, $text-color);
+          display: inline-block;
+          min-width: 90px;
+          padding: 5px;
+          border-radius: 4px;
+          text-align: center;
+          text-transform: capitalize;
+        }
+
+        button {
+          background-color: transparent;
+          color: rgba(222, 133, 0, 1);
+          margin-left: 0;
+        }
+
+        .order-action {
+          cursor: pointer;
+          height: 30px;
+          width: 30px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: $transitions;
+
+          &:hover {
+            background: rgba(225, 230, 239, 1);
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        &:last-child {
+          border-bottom: 1px solid transparent;
+        }
+      }
+    }
+  }
+}

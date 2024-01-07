@@ -1,0 +1,17 @@
+.button {
+  background: $black;
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 55px;
+  transition: $transitions;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 5px;
+  margin-top: 40px;
+
+  &:hover {
+    background: $orange-color;
+  }
+}

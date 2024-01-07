@@ -44,21 +44,6 @@ export const trackDates = (date) => {
   return result;
 };
 
-// export function formatDate(inputDate) {
-//   // Use Moment.js to parse the input date string
-//   const parsedDate = moment(inputDate, "DD-MM-YYYY hh:mm a");
-
-//   // Use Moment.js to format the date in the desired output format
-//   const formattedDate = parsedDate.format("MMM D, YYYY h:mm A");
-
-//   // Return the formatted date string
-//   return formattedDate;
-// }
-
-export function formatDate(dateString) {
-  return moment(dateString, "DD-MM-YYYY HH:mm").format("MMM D, YYYY h:mm A");
-}
-
 export const todaysDate = () => {
   var currentdate = new Date();
   var datetime =
