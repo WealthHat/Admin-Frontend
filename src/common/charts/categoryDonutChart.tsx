@@ -4,21 +4,18 @@ import { screenPixels } from "@/utils/screenpx";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-const Donutchart = ({ data }) => {
-  const active = data?.getActiveVehicleCount;
-  const maintenance = data?.getMaintenanceVehicleCount;
-  const unavailable = data?.getUnavailableVehicleCount;
-  const [isMobile, setIsMobile] = useState(false);
-  const [categories, setCategories] = useState(null);
-
-  useEffect(() => {
-    screenPixels("1330px", setIsMobile);
-  }, []);
+const CategoryDonutchart = ({ data }) => {
+  // get the length of real, liquid and alternative assets
+  const real = data?.filter((item) => item.category === "real assets");
+  const liquid = data?.filter((item) => item.category === "liquid assets");
+  const alternative = data?.filter(
+    (item) => item.category === "alternative assets"
+  );
 
   const [series] = useState(
-    active === 0 && unavailable === 0 && maintenance === 0
-      ? []
-      : [active, maintenance, unavailable]
+    real?.length === 0 && liquid?.length === 0 && alternative?.length === 0
+      ? [0, 0, 0]
+      : [real?.length, liquid?.length, alternative?.length]
   );
 
   const [options] = useState<any>({
@@ -34,7 +31,7 @@ const Donutchart = ({ data }) => {
       },
     },
 
-    labels: ["Available", "Maintenance", "Unavailable"],
+    labels: ["Real Assets", "Liquid Assets", "Alternative Assets"],
 
     markers: {
       colors: ["#F44336", "#E91E63", "#9C27B0"],
@@ -82,18 +79,7 @@ const Donutchart = ({ data }) => {
         },
       },
     },
-    noData: {
-      text: "No data available",
-      align: "center",
-      verticalAlign: "middle",
-      offsetX: 0,
-      offsetY: 0,
-      style: {
-        color: "rgba(51, 51, 51, 0.5)",
-        fontSize: "14px",
-        fontFamily: "Lora",
-      },
-    },
+
     colors: ["#34C695", "#F7A830", "#D33A42"],
     fill: {
       colors: ["#34C695", "#F7A830", "#D33A42"],
@@ -123,4 +109,4 @@ const Donutchart = ({ data }) => {
     // </div>
   );
 };
-export default Donutchart;
+export default CategoryDonutchart;

@@ -4,21 +4,26 @@ import { screenPixels } from "@/utils/screenpx";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-const Donutchart = ({ data }) => {
-  const active = data?.getActiveVehicleCount;
-  const maintenance = data?.getMaintenanceVehicleCount;
-  const unavailable = data?.getUnavailableVehicleCount;
-  const [isMobile, setIsMobile] = useState(false);
-  const [categories, setCategories] = useState(null);
-
-  useEffect(() => {
-    screenPixels("1330px", setIsMobile);
-  }, []);
+const TypesDonutchart = ({ data }) => {
+  // get the length of real, liquid and alternative assets
+  const fixedincome = data?.filter((item) => item.type === "fixed income");
+  const realestate = data?.filter((item) => item.type === "real estate");
+  const equities = data?.filter((item) => item.type === "equities");
+  const cash = data?.filter((item) => item.type === "cash");
+  const business = data?.filter((item) => item.type === "business");
+  const crypto = data?.filter((item) => item.type === "crypto");
 
   const [series] = useState(
-    active === 0 && unavailable === 0 && maintenance === 0
-      ? []
-      : [active, maintenance, unavailable]
+    !data || data?.length === 0
+      ? [0, 0, 0, 0, 0, 0]
+      : [
+          fixedincome?.length,
+          realestate?.length,
+          equities?.length,
+          cash?.length,
+          business?.length,
+          crypto?.length,
+        ]
   );
 
   const [options] = useState<any>({
@@ -34,10 +39,17 @@ const Donutchart = ({ data }) => {
       },
     },
 
-    labels: ["Available", "Maintenance", "Unavailable"],
+    labels: [
+      "Fixed Income",
+      "Real Estate",
+      "Equities",
+      "Cash",
+      "Business Interest",
+      "Crypto",
+    ],
 
     markers: {
-      colors: ["#F44336", "#E91E63", "#9C27B0"],
+      colors: ["#F44336", "#E91E63", "#9C27B0", "green", "violet", "purple"],
     },
 
     Labels: {
@@ -82,21 +94,10 @@ const Donutchart = ({ data }) => {
         },
       },
     },
-    noData: {
-      text: "No data available",
-      align: "center",
-      verticalAlign: "middle",
-      offsetX: 0,
-      offsetY: 0,
-      style: {
-        color: "rgba(51, 51, 51, 0.5)",
-        fontSize: "14px",
-        fontFamily: "Lora",
-      },
-    },
-    colors: ["#34C695", "#F7A830", "#D33A42"],
+
+    colors: ["#F44336", "#E91E63", "#9C27B0", "green", "violet", "purple"],
     fill: {
-      colors: ["#34C695", "#F7A830", "#D33A42"],
+      colors: ["#F44336", "#E91E63", "#9C27B0", "green", "violet", "purple"],
     },
     // responsive: [
     //   {
@@ -123,4 +124,4 @@ const Donutchart = ({ data }) => {
     // </div>
   );
 };
-export default Donutchart;
+export default TypesDonutchart;
