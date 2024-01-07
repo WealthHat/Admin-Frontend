@@ -75,7 +75,7 @@ const CreateNetworth = (props: Props) => {
         if (res?.status === 200 || res?.status === 201) {
           setNetworths(res.data);
           setNetworthloading(false);
-          console.log(res.data);
+        
         } else {
           setNetworthloading(false);
         }
