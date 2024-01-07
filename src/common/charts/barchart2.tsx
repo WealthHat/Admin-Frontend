@@ -23,40 +23,40 @@ const BarChart2 = ({ transactionCount }) => {
   ];
 
   const january = transactionCount?.find(
-    (item) => moment(item.month).format("MMMM") === "January"
+    (item) => moment(item.date).format("MMMM") === "January"
   );
   const febuary = transactionCount?.find(
-    (item) => moment(item.month).format("MMMM") === "Febuary"
+    (item) => moment(item.date).format("MMMM") === "Febuary"
   );
   const march = transactionCount?.find(
-    (item) => moment(item.month).format("MMMM") === "March"
+    (item) => moment(item.date).format("MMMM") === "March"
   );
   const april = transactionCount?.find(
-    (item) => moment(item.month).format("MMMM") === "April"
+    (item) => moment(item.date).format("MMMM") === "April"
   );
   const may = transactionCount?.find(
-    (item) => moment(item.month).format("MMMM") === "May"
+    (item) => moment(item.date).format("MMMM") === "May"
   );
   const june = transactionCount?.find(
-    (item) => moment(item.month).format("MMMM") === "June"
+    (item) => moment(item.date).format("MMMM") === "June"
   );
   const july = transactionCount?.find(
-    (item) => moment(item.month).format("MMMM") === "July"
+    (item) => moment(item.date).format("MMMM") === "July"
   );
   const august = transactionCount?.find(
-    (item) => moment(item.month).format("MMMM") === "August"
+    (item) => moment(item.date).format("MMMM") === "August"
   );
   const september = transactionCount?.find(
-    (item) => moment(item.month).format("MMMM") === "September"
+    (item) => moment(item.date).format("MMMM") === "September"
   );
   const october = transactionCount?.find(
-    (item) => moment(item.month).format("MMMM") === "October"
+    (item) => moment(item.date).format("MMMM") === "October"
   );
   const november = transactionCount?.find(
-    (item) => moment(item.month).format("MMMM") === "November"
+    (item) => moment(item.date).format("MMMM") === "November"
   );
   const december = transactionCount?.find(
-    (item) => moment(item.month).format("MMMM") === "December"
+    (item) => moment(item.date).format("MMMM") === "December"
   );
 
   const [series] = useState<any>([
@@ -66,18 +66,18 @@ const BarChart2 = ({ transactionCount }) => {
         transactionCount?.length === 0
           ? []
           : [
-              !january?.totalAmount ? 0 : january?.totalAmount,
-              !febuary?.totalAmount ? 0 : febuary?.totalAmount,
-              !march?.totalAmount ? 0 : march?.totalAmount,
-              !april?.totalAmount ? 0 : april?.totalAmount,
-              !may?.totalAmount ? 0 : may?.totalAmount,
-              !june?.totalAmount ? 0 : june?.totalAmount,
-              !july?.totalAmount ? 0 : july?.totalAmount,
-              !august?.totalAmount ? 0 : august?.totalAmount,
-              !september?.totalAmount ? 0 : september?.totalAmount,
-              !october?.totalAmount ? 0 : october?.totalAmount,
-              !november?.totalAmount ? 0 : november?.totalAmount,
-              !december?.totalAmount ? 0 : december?.totalAmount,
+              !january?.amount ? 0 : january?.amount,
+              !febuary?.amount ? 0 : febuary?.amount,
+              !march?.amount ? 0 : march?.amount,
+              !april?.amount ? 0 : april?.amount,
+              !may?.amount ? 0 : may?.amount,
+              !june?.amount ? 0 : june?.amount,
+              !july?.amount ? 0 : july?.amount,
+              !august?.amount ? 0 : august?.amount,
+              !september?.amount ? 0 : september?.amount,
+              !october?.amount ? 0 : october?.amount,
+              !november?.amount ? 0 : november?.amount,
+              !december?.amount ? 0 : december?.amount,
             ],
     },
   ]);
@@ -95,7 +95,7 @@ const BarChart2 = ({ transactionCount }) => {
         show: false,
       },
     },
-    colors: ["#FFCD33"],
+    colors: ["#8d4f26"],
     dataLabels: {
       enabled: false,
     },

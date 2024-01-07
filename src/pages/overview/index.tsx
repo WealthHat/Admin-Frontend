@@ -16,6 +16,8 @@ import { DataContext } from "@/store/GlobalState";
 import { GetRequest } from "@/utils/request";
 import Skeleton from "react-loading-skeleton";
 import DashboardVehicleSkeletonLoader from "@/common/skeleton/dashboard-vehicle-skeleton";
+import { trackDate, trackDates } from "@/utils/utils";
+import { getYearDates } from "@/utils/yeardate";
 
 interface Payload {
   email: string;
@@ -30,12 +32,26 @@ export default function Overview() {
   const [pageLoading, setPageLoading] = useState(false);
   const [loading, setLoading] = useState(true);
   const { state } = useContext(DataContext);
-  const [transactionCount, setTransactionCount] = useState(null);
-  const [availableRiders, setAvailableRiders] = useState(null);
-  const [fleetCount, setFleetCount] = useState(null);
-  const [orderCount, setOrderCount] = useState(null);
+  const [networthData, setNetworthData] = useState(null);
   const [count, setCount] = useState(null);
   const [users, setUsers] = useState(null);
+  const [networthloading, setNetworthloading] = useState(true);
+  const [startYear, setStartYear] = useState(null);
+  const [endYear, setEndYear] = useState(null);
+  const [currency, setCurrency] = useState("naira");
+  const [callback, setCallback] = useState(false);
+
+  // get the year date
+  useEffect(() => {
+    // get year dates for the transaction
+    // Get the current year
+    const currentYear = new Date().getFullYear();
+
+    // Get the start and end dates of the current year
+    const { startYear, endYear } = getYearDates(currentYear);
+    setStartYear(trackDates(startYear));
+    setEndYear(trackDates(endYear));
+  }, []);
 
   // get dashboard count
   useEffect(() => {
@@ -54,6 +70,27 @@ export default function Overview() {
       getCount();
     }
   }, [state?.token]);
+
+  // get networth chart
+  useEffect(() => {
+    setNetworthloading(true);
+    if (state?.token) {
+      const getNetworthChart = async () => {
+        const res = await GetRequest(
+          `/admin/networth-chart?currency=${currency}&start_date=${startYear}&end_date=${endYear}`,
+          state?.token
+        );
+
+        if (res?.status === 200 || res?.status === 201) {
+          setNetworthData(res.data.filteredData);
+          setNetworthloading(false);
+        } else {
+          setNetworthloading(false);
+        }
+      };
+      getNetworthChart();
+    }
+  }, [state?.token, callback]);
 
   // responsive slider on smaller devices
   let settings = {
@@ -233,13 +270,42 @@ export default function Overview() {
                   <h4>Networths</h4>
 
                   {/* <div className="date-box">
-                    <span>{trackDate(startWeek)}</span>
+                    <span>{trackDate(startYear)}</span>
                     <span> - </span>
-                    <span>{trackDate(endWeek)}</span>
+                    <span>{trackDate(endYear)}</span>
                   </div> */}
+
+                  <select
+                    value={currency}
+                    onChange={(e) => {
+                      setCurrency(e.target.value), setCallback(!callback);
+                    }}
+                    className="form-select"
+                  >
+                    <option value="naira">Naira</option>
+                    <option value="dollar">Dollar</option>
+                  </select>
                 </div>
 
-                {/* <BarCharts orderCount={orderCount} /> */}
+                {networthloading ? (
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginTop: "50px",
+                    }}
+                  >
+                    <Loading
+                      height="40px"
+                      width="40px"
+                      primaryColor="#000"
+                      secondaryColor="#000"
+                    />
+                  </div>
+                ) : (
+                  <BarChart2 transactionCount={networthData} />
+                )}
               </div>
             </div>
 

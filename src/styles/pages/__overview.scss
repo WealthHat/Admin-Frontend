@@ -86,9 +86,9 @@
         cursor: pointer;
         width: 100%;
 
-        .skelet{
-          margin:0!important;
-          border-radius:0;
+        .skelet {
+          margin: 0 !important;
+          border-radius: 0;
         }
 
         &:hover {
@@ -294,6 +294,7 @@
           overflow-x: auto;
         }
       }
+
       .col-right {
         @media (max-width: 1233px) {
           width: 100%;
@@ -343,30 +344,10 @@
           cursor: pointer !important;
         }
 
-        .form-select {
-          @include body-text(12px, 500, $text-color);
-          width: 150px;
-          appearance: none;
-          -moz-appearance: none;
-          -webkit-appearance: none;
-          padding-right: 15px;
-          background-image: url("/images/arrow-down.svg");
-          background-repeat: no-repeat;
-          background-size: 17px;
-          background-position: calc(100% - 13px) center;
-          background-color: transparent !important;
-          padding: 15px;
-          border: none;
-          cursor: pointer;
-          &::-ms-expand {
-            padding-right: 30px;
-          }
-
-          &::-webkit-input-placeholder {
-            font-size: 12px;
-            font-weight: 400;
-            color: $light-color;
-          }
+        select {
+          padding: 13px;
+          border: 1px solid $border-color;
+          width:150px;
         }
       }
 
