@@ -33,6 +33,16 @@ export default function Authenticate() {
     }
   }, []);
 
+  // check if token is available
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("user"));
+    if (userData) {
+      router.push("/overview");
+      return;
+    }
+    setPageLoading(false);
+  }, []);
+
   // handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,12 +64,11 @@ export default function Authenticate() {
 
     const res = await PostRequest("/admin/auth-signin", payload);
     if (res.status === 200 || res.status === 201) {
-      // localStorage.setItem("activation_token", res.data.activation_token);
-      console.log(res.data);
+      localStorage.setItem("user", JSON.stringify(res.data.data));
+      router.push("/overview");
       cogoToast.success(res.data.msg);
     } else {
       setLoading(false);
-      router.push("/overview");
     }
   };
 

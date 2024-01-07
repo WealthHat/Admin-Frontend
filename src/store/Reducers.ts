@@ -13,6 +13,11 @@ const reducers = (state, action) => {
         ...state,
         token: payload,
       };
+    case ACTIONS.PAGELOADING:
+      return {
+        ...state,
+        pageloading: payload,
+      };
 
     default:
       return state;

@@ -18,6 +18,7 @@ import Skeleton from "react-loading-skeleton";
 import DashboardVehicleSkeletonLoader from "@/common/skeleton/dashboard-vehicle-skeleton";
 import { trackDate, trackDates } from "@/utils/utils";
 import { getYearDates } from "@/utils/yeardate";
+import Layout from "@/components/Layout";
 
 interface Payload {
   email: string;
@@ -29,7 +30,6 @@ export default function Overview() {
   const router = useRouter();
 
   // PageLoader
-  const [pageLoading, setPageLoading] = useState(false);
   const [loading, setLoading] = useState(true);
   const { state } = useContext(DataContext);
   const [networthData, setNetworthData] = useState(null);
@@ -140,11 +140,9 @@ export default function Overview() {
     ],
   };
 
-  if (pageLoading) return;
 
   return (
-    <>
-      <Nav />
+    <Layout>
       <div className="container-fliud dashboard-content-container">
         <div className="statistics">
           {/* summary  */}
@@ -396,6 +394,6 @@ export default function Overview() {
           </div>
         </div>
       </div>
-    </>
+    </Layout>
   );
 }

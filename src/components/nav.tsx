@@ -8,18 +8,8 @@ import { ACTIONS } from "@/store/Actions";
 
 export default function Nav() {
   const router = useRouter();
-  const { state, dispatch } = useContext(DataContext);
+  const { state } = useContext(DataContext);
 
-  useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem("user"));
-
-    if (!userData) {
-      router.push("/");
-    }
-
-    dispatch({ type: ACTIONS.TOKEN, payload: userData?.token });
-    dispatch({ type: ACTIONS.USER, payload: userData?.user });
-  }, []);
 
   //
 

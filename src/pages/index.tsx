@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Inter } from "next/font/google";
 import { useRouter } from "next/router";
 import cogoToast from "cogo-toast";
@@ -7,6 +7,7 @@ import Logo2 from "@/svg/Logo2";
 import { useSelector } from "react-redux";
 import { PostRequest } from "@/utils/request";
 import Loading from "@/common/loading";
+import { DataContext } from "@/store/GlobalState";
 
 interface Payload {
   email: string;
@@ -18,12 +19,22 @@ export default function Home() {
   const router = useRouter();
 
   // PageLoader
-  const [pageLoading, setPageLoading] = useState(false);
+  const [pageLoading, setPageLoading] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  // const { user, token } = useSelector((state: any) => state.auth);
+  const { state } = useContext(DataContext);
+
+    // check if token is available
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("user"));
+    if (userData) {
+      router.push("/overview");
+      return;
+    }
+    setPageLoading(false);
+  }, []);
 
   // handle submit
   const handleSubmit = async (e) => {
@@ -45,10 +56,9 @@ export default function Home() {
     // requests
     const res = await PostRequest("/admin/signin", payload);
     if (res.status === 200 || res.status === 201) {
-      localStorage.setItem("user", JSON.stringify(res.data.data));
-      // localStorage.setItem("activation_token", res.data.activation_token);
+      localStorage.setItem("activation_token", res.data.activation_token);
       cogoToast.success(res.data.msg);
-      router.push("/overview");
+      router.push("/authenticate");
     } else {
       setLoading(false);
     }

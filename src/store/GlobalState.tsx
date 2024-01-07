@@ -7,6 +7,7 @@ export const DataProvider = ({ children }: any) => {
   const initialState = {
     user: null,
     token: null,
+    pageloading: true,
   };
 
   const [state, dispatch] = useReducer(reducers, initialState);
