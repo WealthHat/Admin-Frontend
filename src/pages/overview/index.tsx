@@ -17,7 +17,7 @@ import { GetRequest } from "@/utils/request";
 import Skeleton from "react-loading-skeleton";
 import DashboardVehicleSkeletonLoader from "@/common/skeleton/dashboard-vehicle-skeleton";
 import { trackDate, trackDates } from "@/utils/utils";
-import { getYearDates } from "@/utils/yeardate";
+import { currentYear, getYearDates } from "@/utils/yeardate";
 import Layout from "@/components/Layout";
 
 interface Payload {
@@ -43,14 +43,7 @@ export default function Overview() {
 
   // get the year date
   useEffect(() => {
-    // get year dates for the transaction
     // Get the current year
-    const currentYear = new Date().getFullYear();
-
-    // Get the start and end dates of the current year
-    const { startYear, endYear } = getYearDates(currentYear);
-    setStartYear(trackDates(startYear));
-    setEndYear(trackDates(endYear));
   }, []);
 
   // get dashboard count
@@ -76,8 +69,10 @@ export default function Overview() {
     setNetworthloading(true);
     if (state?.token) {
       const getNetworthChart = async () => {
+        const years = currentYear();
+
         const res = await GetRequest(
-          `/admin/networth-chart?currency=${currency}&start_date=${startYear}&end_date=${endYear}`,
+          `/admin/networth-chart?currency=${currency}&start_date=${years.startYear}&end_date=${years.endYear}`,
           state?.token
         );
 
@@ -139,7 +134,6 @@ export default function Overview() {
       },
     ],
   };
-
 
   return (
     <Layout>
