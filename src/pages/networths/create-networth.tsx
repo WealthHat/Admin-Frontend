@@ -133,6 +133,16 @@ const CreateNetworth = (props: Props) => {
   const categorySort = sortCategory(networths, categories);
   const sortedData = sortTypes(categorySort, types);
 
+  // get the total value
+  const nairatotal = sortedData.reduce(
+    (acc, item) => acc + Number(removeNum(item.current_value_naira)),
+    0
+  );
+  const dollartotal = sortedData.reduce(
+    (acc, item) => acc + Number(removeNum(item.current_value_dollar)),
+    0
+  );
+
   //
   return (
     <Layout>
@@ -311,21 +321,38 @@ const CreateNetworth = (props: Props) => {
                         </thead>
 
                         <tbody>
-                          {sortedData?.map((item, index) => (
-                            <tr className="shaded" key={index}>
-                              <td scope="row">{index + 1}</td>
-                              <td scope="row">{item.category}</td>
-                              <td scope="row">{item.type}</td>
-                              <td scope="row">{item.assets}</td>
-                              <td scope="row">
-                                {formatMoney(item.current_value_naira)}
-                              </td>
-                              <td scope="row">
-                                {formatMoney(item.current_value_dollar)}
-                              </td>
-                            </tr>
-                          ))}
+                     
+                            {sortedData?.map((item, index) => (
+                              <tr className="shaded" key={index}>
+                                <td scope="row">{index + 1}</td>
+                                <td scope="row">{item.category}</td>
+                                <td scope="row">{item.type}</td>
+                                <td scope="row">{item.assets}</td>
+                                <td scope="row">
+                                  {formatMoney(item.current_value_naira)}
+                                </td>
+                                <td scope="row">
+                                  {formatMoney(item.current_value_dollar)}
+                                </td>
+                              </tr>
+                            ))}
+
+                      
                         </tbody>
+
+                        <tfoot>
+                          <tr>
+                            <td scope="row"></td>
+                            <td scope="row"></td>
+                            <td scope="row"></td>
+                            <td scope="row">
+                              <b>Total</b>
+                            </td>
+
+                            <td>N{formatMoney(nairatotal)}</td>
+                            <td>${formatMoney(dollartotal)}</td>
+                          </tr>
+                        </tfoot>
                       </table>
                     )}
                   </>
