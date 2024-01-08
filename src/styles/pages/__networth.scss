@@ -112,10 +112,11 @@
         width: 4%;
       }
 
-      &:last-child {
-        width: 5%;
+      &.actions{
+        width:5%;
       }
     }
+
     tr {
       border-bottom: 1px solid $border-color;
 
@@ -133,6 +134,7 @@
           text-overflow: ellipsis;
           overflow: hidden;
         }
+
         .pickup {
           width: 120px !important;
           white-space: nowrap;
@@ -184,7 +186,7 @@
 
   .all-networths {
     padding: 0 30px;
-    padding-bottom: 100px!important;
+    padding-bottom: 100px !important;
 
 
     .heading {
@@ -212,13 +214,13 @@
       }
     }
 
-    .networth-empty{
-      margin-top:50px;
-      color:$light-color;
+    .networth-empty {
+      margin-top: 50px;
+      color: $light-color;
 
-      .bi{
-        font-size:50px;
-        color:$light-color;
+      .bi {
+        font-size: 50px;
+        color: $light-color;
       }
     }
   }

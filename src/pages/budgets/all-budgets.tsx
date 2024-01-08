@@ -9,6 +9,7 @@ import { sortCategory, sortTypes } from "@/utils/filter";
 import Tooltip from "rc-tooltip";
 import ViewIcon from "@/svg/ViewIcon";
 import moment from "moment";
+import BlogTableSkeletonLoader from "@/common/skeleton/blog-table-skeleton";
 
 interface Props {}
 
@@ -110,7 +111,7 @@ const AllBudgets = (props: Props) => {
           </div>
 
           {budgetloading ? (
-            <NetworthTableSkeletonLoader />
+            <BlogTableSkeletonLoader />
           ) : (
             <>
               {!sortedData || sortedData?.length === 0 ? (
@@ -180,7 +181,7 @@ const AllBudgets = (props: Props) => {
                       <th scope="col">Annual</th>
                       <th scope="col">Monthly</th>
                       <th scope="col">Date</th>
-                      <th scope="col">Actions</th>
+                      <th scope="col" className="actions">Actions</th>
                     </tr>
                   </thead>
 

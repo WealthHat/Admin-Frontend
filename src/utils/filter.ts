@@ -35,17 +35,9 @@ export const sortTypes = (result, values) => {
 export const sortBudgetCategory = (result, values) => {
   return result?.filter((item) => {
     if (values === "1") {
-      return item.type === "fixed income";
+      return item.category === "money in";
     } else if (values === "2") {
-      return item.type === "real estate";
-    } else if (values === "3") {
-      return item.type === "equities";
-    } else if (values === "4") {
-      return item.type === "cash";
-    } else if (values === "5") {
-      return item.type === "business interest";
-    } else if (values === "6") {
-      return item.type === "crypto";
+      return item.category === "money out";
     } else {
       return item;
     }
@@ -55,61 +47,61 @@ export const sortBudgetCategory = (result, values) => {
 export const sortBudgetTitle = (result, values) => {
   return result?.filter((item) => {
     if (values === "1") {
-      return item.type === "salary";
+      return item.title === "salary";
     } else if (values === "2") {
-      return item.type === "business income";
+      return item.title === "business income";
     } else if (values === "3") {
-      return item.type === "rental income";
+      return item.title === "rental income";
     } else if (values === "4") {
-      return item.type === "additional incoms";
+      return item.title === "additional incoms";
     } else if (values === "5") {
-      return item.type === "housing";
+      return item.title === "housing";
     } else if (values === "6") {
-      return item.type === "food";
+      return item.title === "food";
     } else if (values === "7") {
-      return item.type === "groceries";
+      return item.title === "groceries";
     } else if (values === "8") {
-      return item.type === "childcare";
+      return item.title === "childcare";
     } else if (values === "9") {
-      return item.type === "car fuel";
+      return item.title === "car fuel";
     } else if (values === "10") {
-      return item.type === "clothing";
+      return item.title === "clothing";
     } else if (values === "11") {
-      return item.type === "electricity";
+      return item.title === "electricity";
     } else if (values === "12") {
-      return item.type === "transport";
+      return item.title === "transport";
     } else if (values === "13") {
-      return item.type === "utilities";
+      return item.title === "utilities";
     } else if (values === "14") {
-      return item.type === "netflix";
+      return item.title === "netflix";
     } else if (values === "15") {
-      return item.type === "phone bill";
+      return item.title === "phone bill";
     } else if (values === "16") {
-      return item.type === "dinning out";
+      return item.title === "dinning out";
     } else if (values === "17") {
-      return item.type === "family";
+      return item.title === "family";
     } else if (values === "18") {
-      return item.type === "school fees";
+      return item.title === "school fees";
     } else if (values === "19") {
-      return item.type === "domestic staff";
+      return item.title === "domestic staff";
     } else if (values === "20") {
-      return item.type === "health insurance";
+      return item.title === "health insurance";
     } else if (values === "21") {
-      return item.type === "life insurance";
+      return item.title === "life insurance";
     } else if (values === "22") {
-      return item.type === "gym membership";
+      return item.title === "gym membership";
     } else if (values === "23") {
-      return item.type === "personal care";
+      return item.title === "personal care";
     } else if (values === "24") {
-      return item.type === "vacation";
+      return item.title === "vacation";
     } else if (values === "25") {
-      return item.type === "parents care";
+      return item.title === "parents care";
     } else if (values === "26") {
-      return item.type === "car insurance";
+      return item.title === "car insurance";
     } else if (values === "27") {
-      return item.type === "repairs";
+      return item.title === "repairs";
     } else if (values === "28") {
-      return item.type === "driver";
+      return item.title === "driver";
     } else {
       return item;
     }
