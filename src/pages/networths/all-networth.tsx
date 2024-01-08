@@ -157,7 +157,7 @@ const AllNetworth = (props: Props) => {
                       <th scope="col">Assets</th>
                       <th scope="col">Value (N)</th>
                       <th scope="col">Value ($)</th>
-                      <th scope="col">Actions</th>
+                      <th scope="col" className="actions">Actions</th>
                     </tr>
                   </thead>
 
@@ -204,6 +204,7 @@ const AllNetworth = (props: Props) => {
                       <td>
                         <b>${formatMoney(dollartotal)}</b>
                       </td>
+                       <td scope="row"></td>
                     </tr>
                   </tfoot>
                 </table>

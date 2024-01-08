@@ -5,7 +5,12 @@ import { GetRequest } from "@/utils/request";
 import { DataContext } from "@/store/GlobalState";
 import NetworthTableSkeletonLoader from "@/common/skeleton/networth-table-skeleton";
 import { formatMoney, removeNum } from "@/utils/utils";
-import { sortCategory, sortTypes } from "@/utils/filter";
+import {
+  sortBudgetCategory,
+  sortBudgetTitle,
+  sortCategory,
+  sortTypes,
+} from "@/utils/filter";
 import Tooltip from "rc-tooltip";
 import ViewIcon from "@/svg/ViewIcon";
 import moment from "moment";
@@ -40,16 +45,16 @@ const AllBudgets = (props: Props) => {
   }, [state?.token]);
 
   // sorted and filtered data
-  const categorySort = sortCategory(budgets, categories);
-  const sortedData = sortTypes(categorySort, types);
+  const categorySort = sortBudgetCategory(budgets, categories);
+  const sortedData = sortBudgetTitle(categorySort, types);
 
   // get the total value
-  const nairatotal = sortedData?.reduce(
-    (acc, item) => acc + Number(removeNum(item.current_value_naira)),
+  const monthlytotal = sortedData?.reduce(
+    (acc, item) => acc + Number(removeNum(item.monthly)),
     0
   );
-  const dollartotal = sortedData?.reduce(
-    (acc, item) => acc + Number(removeNum(item.current_value_dollar)),
+  const annualtotal = sortedData?.reduce(
+    (acc, item) => acc + Number(removeNum(item.annually)),
     0
   );
 
@@ -181,7 +186,9 @@ const AllBudgets = (props: Props) => {
                       <th scope="col">Annual</th>
                       <th scope="col">Monthly</th>
                       <th scope="col">Date</th>
-                      <th scope="col" className="actions">Actions</th>
+                      <th scope="col" className="actions">
+                        Actions
+                      </th>
                     </tr>
                   </thead>
 
@@ -214,16 +221,18 @@ const AllBudgets = (props: Props) => {
                       <td scope="row"></td>
                       <td scope="row"></td>
                       <td scope="row"></td>
+
                       <td scope="row">
                         <b>Total</b>
                       </td>
 
                       <td>
-                        <b>N{formatMoney(nairatotal)}</b>
+                        <b>N{formatMoney(annualtotal)}</b>
                       </td>
                       <td>
-                        <b>${formatMoney(dollartotal)}</b>
+                        <b>N{formatMoney(monthlytotal)}</b>
                       </td>
+                       <td scope="row"></td>
                     </tr>
                   </tfoot>
                 </table>

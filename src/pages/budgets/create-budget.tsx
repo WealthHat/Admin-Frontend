@@ -384,6 +384,7 @@ const CreateBudget = (props: Props) => {
                             <td>
                               <b>N{formatMoney(monthlytotal)}</b>
                             </td>
+                            <td scope="row"></td>
                           </tr>
                         </tfoot>
                       </table>

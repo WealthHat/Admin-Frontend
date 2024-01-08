@@ -177,10 +177,15 @@
 
     tbody {
       tr {
-        &:last-child {
-          border-bottom: 1px solid transparent;
-        }
+        // &:last-child {
+        //   border-bottom: 1px solid transparent;
+        // }
       }
+    }
+
+    tfoot{
+      margin-top:10px;
+      background:$border-color!important;
     }
   }
 
